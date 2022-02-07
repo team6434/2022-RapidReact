@@ -5,6 +5,7 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -24,11 +25,18 @@ public class Robot extends TimedRobot {
    * This function is run when the robot is first started up and should be used for any
    * initialization code.
    */
+
+  private Drivetrain drivetrain;
+  private XboxController controller;
+
   @Override
   public void robotInit() {
     m_chooser.setDefaultOption("Default Auto", kDefaultAuto);
     m_chooser.addOption("My Auto", kCustomAuto);
     SmartDashboard.putData("Auto choices", m_chooser);
+
+    drivetrain = new Drivetrain();
+    controller = new XboxController(0);
   }
 
   /**
@@ -78,7 +86,31 @@ public class Robot extends TimedRobot {
 
   /** This function is called periodically during operator control. */
   @Override
-  public void teleopPeriodic() {}
+  public void teleopPeriodic() {
+    // controller.getLeftX();
+    // controller.getLeftY();
+
+    // drivetrain.diffDrive.arcadeDrive(controller.getLeftX(), controller.getLeftY());
+
+    double Xreading;
+    double Yreading;
+
+    Xreading = controller.getRawAxis(0);
+    Yreading = -controller.getRawAxis(1);
+
+    if (Math.abs(Xreading) < 0.1) 
+    {
+      Xreading = 0;
+    }
+
+    if (Math.abs(Yreading) < 0.1) 
+    {
+      Yreading = 0;
+    }
+
+    drivetrain.arcadeDrive(Xreading, Yreading, 0.25);
+
+  }
 
   /** This function is called once when the robot is disabled. */
   @Override
