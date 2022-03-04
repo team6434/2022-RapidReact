@@ -109,6 +109,7 @@ public class Robot extends TimedRobot {
     }
 
     drivetrain.arcadeDrive(Xreading, Yreading, 0.25);
+    // System.out.println(Xreading);
 
   }
 
