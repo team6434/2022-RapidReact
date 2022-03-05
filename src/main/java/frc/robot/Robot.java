@@ -28,6 +28,7 @@ public class Robot extends TimedRobot {
 
   private Drivetrain drivetrain;
   private XboxController controller;
+  private Autonomous auto;
 
   @Override
   public void robotInit() {
@@ -37,6 +38,8 @@ public class Robot extends TimedRobot {
 
     drivetrain = new Drivetrain();
     controller = new XboxController(0);
+    auto = new Autonomous(drivetrain);
+
   }
 
   /**
@@ -69,15 +72,16 @@ public class Robot extends TimedRobot {
   /** This function is called periodically during autonomous. */
   @Override
   public void autonomousPeriodic() {
-    switch (m_autoSelected) {
-      case kCustomAuto:
-        // Put custom auto code here
-        break;
-      case kDefaultAuto:
-      default:
-        // Put default auto code here
-        break;
-    }
+    // switch (m_autoSelected) {
+    //   case kCustomAuto:
+    //     // Put custom auto code here
+    //     break;
+    //   case kDefaultAuto:
+    //   default:
+    //     // Put default auto code here
+    //     break;
+    // }
+    auto.driveByTime(3, 0.5);
   }
 
   /** This function is called once when teleop is enabled. */

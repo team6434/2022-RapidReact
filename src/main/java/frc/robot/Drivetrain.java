@@ -12,12 +12,17 @@ public class Drivetrain {
         left = new VictorSP(0);
         right = new VictorSP(1);
 
-        diffDrive = new DifferentialDrive(left, right);
+        // diffDrive = new DifferentialDrive(left, right);
     }
 
     public void drive(double leftSpeed, double rightSpeed){
         left.set(leftSpeed);
         right.set(rightSpeed);
+    }
+
+    public void drive(double speed) {
+        left.set(speed);
+        right.set(-speed);
     }
 
     public void arcadeDrive(double Xreading, double Yreading, double speed) {
