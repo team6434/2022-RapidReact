@@ -29,6 +29,8 @@ public class Robot extends TimedRobot {
   private Drivetrain drivetrain;
   private XboxController controller;
   private Autonomous auto;
+  private Intake intake; 
+  private Delivery delivery;
 
   @Override
   public void robotInit() {
@@ -39,6 +41,8 @@ public class Robot extends TimedRobot {
     drivetrain = new Drivetrain();
     controller = new XboxController(0);
     auto = new Autonomous(drivetrain);
+    intake = new Intake();
+    delivery = new Delivery();
 
   }
 
@@ -115,6 +119,35 @@ public class Robot extends TimedRobot {
     drivetrain.arcadeDrive(Xreading, Yreading, 0.25);
     // System.out.println(Xreading);
 
+    if (controller.getBButtonPressed() == true){
+      intake.lower();
+    }
+    else if (controller.getAButtonPressed() == true){
+      intake.lift();
+    }
+    else {
+      intake.armsOff();
+    }
+    
+    if (controller.getRightTriggerAxis() > 0.75){
+      intake.getBall();
+    }
+    else if (controller.getLeftTriggerAxis() > 0.75){
+      intake.reverseBall();
+    }
+    else {
+      intake.wheelsOff();
+    }
+
+    if (controller.getLeftBumperPressed() == true){
+      delivery.reverse();
+    }
+    else if (controller.getRightBumperPressed() == true){
+      delivery.shoot();
+    }
+    else {
+      delivery.off();
+    }
   }
 
   /** This function is called once when the robot is disabled. */
