@@ -21,6 +21,9 @@ public class Drivetrain {
         right.set(rightSpeed);
     }
 
+
+    // sets the speed of the left and right motor to the same thing
+    // Random comment :P
     public void drive(double speed) {
         left.set(speed);
         right.set(-speed);
