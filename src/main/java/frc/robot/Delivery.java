@@ -15,7 +15,7 @@ public class Delivery {
     public void shoot() {
         motor.set(speed);
     }
-
+//the negative speed allows the ball to be reversed out of the internal transport
     public void reverse() {
         motor.set(-speed);
     }
