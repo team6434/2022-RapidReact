@@ -13,15 +13,15 @@ public class Intake {
         wheelSpeed = 0.4;
 
     }
-
+    //Lowers down the arm 
     public void lower(){
         arm.set(armSpeed);
     }
-
+    //Lifts up the arm
     public void lift(){
         arm.set(-armSpeed);
     }
-
+    //Turns Arm motors off
     public void armsOff(){
         arm.set(0);
     }
